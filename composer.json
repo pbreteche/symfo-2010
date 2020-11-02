@@ -1,6 +1,14 @@
 {
+    "name": "dawan/blog",
+    "description": "A training workshop to learn Symfony framework",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pierre Bretéché",
+            "role": "Lead dev"
+        }
+    ],
     "require": {
         "php": ">=7.2.5",
         "ext-ctype": "*",
