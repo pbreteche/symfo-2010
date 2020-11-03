@@ -42,13 +42,15 @@ class HelloController extends AbstractController
         array_push($lastIds, $id);
         $lastIds = array_slice($lastIds, -self::HISTORY_DEPTH);
 
+        dump($lastIds);
+
         $request->getSession()->set('article-history', $lastIds);
 
         $response = new Response($historyMessage.'L\'article numéro: '.$id.'.');
 
         $response->headers->set('Content-Type', 'text/html');
         $response->setStatusCode(Response::HTTP_ACCEPTED);
-        $response->setContent('<p>'.$response->getContent().'</p>');
+        $response->setContent('<p>'.$response->getContent().'</p></body>');
 
         return $response;
     }
