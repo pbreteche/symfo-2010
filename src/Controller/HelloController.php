@@ -28,8 +28,17 @@ class HelloController extends AbstractController
         return new Response('Bonjour '.$name.' !');
     }
 
-    public function demo3(int $id)
+    public function demo3(int $id, Request $request)
     {
-        return new Response('L\'article numéro: '.$id.'.');
+        $lastArticle = $request->getSession()->get('article-history');
+
+        if (!$lastArticle) {
+            $historyMessage = 'votre historique est vide<br>';
+        } else {
+            $historyMessage = 'Vous avez visitez les articles: '.$lastArticle.'<br>';
+        }
+        $request->getSession()->set('article-history', $id);
+
+        return new Response($historyMessage.'L\'article numéro: '.$id.'.');
     }
 }
