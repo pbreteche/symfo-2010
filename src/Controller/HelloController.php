@@ -44,6 +44,12 @@ class HelloController extends AbstractController
 
         $request->getSession()->set('article-history', $lastIds);
 
-        return new Response($historyMessage.'L\'article numéro: '.$id.'.');
+        $response = new Response($historyMessage.'L\'article numéro: '.$id.'.');
+
+        $response->headers->set('Content-Type', 'text/html');
+        $response->setStatusCode(Response::HTTP_ACCEPTED);
+        $response->setContent('<p>'.$response->getContent().'</p>');
+
+        return $response;
     }
 }
