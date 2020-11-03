@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HelloController extends AbstractController
 {
+    public const HISTORY_DEPTH = 5;
 
     public function demo1()
     {
@@ -30,14 +31,18 @@ class HelloController extends AbstractController
 
     public function demo3(int $id, Request $request)
     {
-        $lastArticle = $request->getSession()->get('article-history');
+        $lastIds = $request->getSession()->get('article-history', []);
 
-        if (!$lastArticle) {
+        if (empty($lastIds)) {
             $historyMessage = 'votre historique est vide<br>';
         } else {
-            $historyMessage = 'Vous avez visitez les articles: '.$lastArticle.'<br>';
+            $historyMessage = 'Vous avez visitez les articles: '.implode(', ', $lastIds).'<br>';
         }
-        $request->getSession()->set('article-history', $id);
+
+        array_push($lastIds, $id);
+        $lastIds = array_slice($lastIds, -self::HISTORY_DEPTH);
+
+        $request->getSession()->set('article-history', $lastIds);
 
         return new Response($historyMessage.'L\'article numéro: '.$id.'.');
     }
