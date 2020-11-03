@@ -10,4 +10,14 @@ demo3:
 
 demo2:
     path: /hello/{name}
+    defaults: { name: 'tout le monde', _locale: en }
+    schemes: https
+    methods: [GET, POST]
+    controller: App\Controller\HelloController::demo2
+
+demo2.fr:
+    path: /bonjour/{name}.{_format}
+    defaults: { name: 'tout le monde', _locale: fr, _format: html }
+    schemes: https
+    methods: [GET, POST]
     controller: App\Controller\HelloController::demo2
