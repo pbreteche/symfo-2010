@@ -12,4 +12,14 @@ class HelloController extends AbstractController
     {
         return new Response('Yes, ça marche !!!');
     }
+
+    public function demo2(string $name)
+    {
+        return new Response('Bonjour '.$name.' !');
+    }
+
+    public function demo3(int $id)
+    {
+        return new Response('L\'article numéro: '.$id.'.');
+    }
 }
