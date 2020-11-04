@@ -29,7 +29,7 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}", requirements={"id": "\d+"})
      */
-    public function detail(Post $post)
+    public function detail(Post $post): Response
     {
         return $this->render('post/detail.html.twig', [
             'post' => $post,
@@ -39,10 +39,19 @@ class PostController extends AbstractController
     /**
      * @Route("/new", methods={"GET", "POST"})
      */
-    public function create(Request $request)
+    public function create(Request $request): Response
     {
+        $post = new Post();
+        $form = $this->createFormBuilder($post)
+            ->add('title')
+            ->add('author')
+            ->add('publishedAt')
+            ->add('content')
+            ->add('isPublished')
+            ->getForm();
 
-
-        return $this->render('post/create.html.twig');
+        return $this->render('post/create.html.twig', [
+            'create_form' => $form->createView(),
+        ]);
     }
 }
