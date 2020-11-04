@@ -20,4 +20,16 @@ class PostController extends AbstractController
             'posts' => $posts,
         ]);
     }
+
+    /**
+     * @Route("/post/{id}", methods="GET")
+     */
+    public function detail(int $id, PostRepository $repository)
+    {
+        $post = $repository->find($id);
+
+        return $this->render('post/detail.html.twig', [
+            'post' => $post,
+        ]);
+    }
 }
