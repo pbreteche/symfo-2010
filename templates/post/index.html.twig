@@ -12,6 +12,11 @@
     {# ci après des interpolations #}
     {{ twig_variable_name }}
     1 + 1 = {{ 1 + 1 }}
+
+    {% if app.debug %}
+        {# toutes mes variables #}
+        {{ dump() }}
+    {% endif %}
 </p>
 </body>
 </html>
