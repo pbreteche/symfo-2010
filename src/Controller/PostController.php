@@ -22,11 +22,15 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/post/{id}", methods="GET")
+     * @Route("/post/{id}", methods="GET", requirements={"id": "\d+"})
      */
     public function detail(int $id, PostRepository $repository)
     {
         $post = $repository->find($id);
+
+        if (!$post) {
+            throw $this->createNotFoundException();
+        }
 
         return $this->render('post/detail.html.twig', [
             'post' => $post,
