@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block body %}
+    <nav>
+        <a href="{{ path("app_post_index") }}">Retour à la liste</a>
+    </nav>
 <h1>{{ post.title }}</h1>
 <p>Écrit par {{ post.author }} le {{ post.publishedAt | date('d/m/Y à h:i:s') }} </p>
 <div>
