@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,10 +43,14 @@ class PostController extends AbstractController
     public function create(Request $request): Response
     {
         $post = new Post();
+        $post->setPublishedAt(new \DateTimeImmutable('now'));
+
         $form = $this->createFormBuilder($post)
             ->add('title')
             ->add('author')
-            ->add('publishedAt')
+            ->add('publishedAt', DateTimeType::class, [
+                'widget' => 'single_text',
+            ])
             ->add('content')
             ->add('isPublished')
             ->getForm();
