@@ -4,14 +4,9 @@
 
 {% block body %}
 <h1>Liste des articles</h1>
-<p>
-    {# ci après des interpolations #}
-    {{ twig_variable_name }}
-    1 + 1 = {{ 1 + 1 }}
-
-    {% if app.debug %}
-        {# toutes mes variables #}
-        {{ dump() }}
-    {% endif %}
-</p>
+<ul>
+    {% for post in posts %}
+    <li>{{ post.title }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
