@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,7 +41,7 @@ class PostController extends AbstractController
     /**
      * @Route("/new", methods={"GET", "POST"})
      */
-    public function create(Request $request): Response
+    public function create(Request $request, EntityManagerInterface $manager): Response
     {
         $post = new Post();
         $post->setPublishedAt(new \DateTimeImmutable('now'));
@@ -54,6 +55,17 @@ class PostController extends AbstractController
             ->add('content')
             ->add('isPublished')
             ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($post);
+            $manager->flush();
+
+            $this->addFlash('success', 'Bravo, vous avez réussi l\'exploit de créer un article');
+
+            return $this->redirectToRoute('app_post_detail', ['id' => $post->getId()]);
+        }
 
         return $this->render('post/create.html.twig', [
             'create_form' => $form->createView(),
