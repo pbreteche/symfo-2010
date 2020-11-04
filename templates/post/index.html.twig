@@ -6,14 +6,7 @@
 <h1>Liste des articles</h1>
 <ul>
     {% for post in posts %}
-    {# Le composant Symfony PropertyAccessor tente d'accéder à :
-        1. le champs "title"
-        2. la méthode "title()"
-        3. la méthode "getTitle()"
-        4. la méthode "hasTitle()"
-        5. la méthode "isTitle()"
-    #}
-    <li>{{ post.title }}</li>
+    <li><a href="{{ path('app_post_detail', { id: post.id }) }}">{{ post.title }}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
