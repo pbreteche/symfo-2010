@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,15 +46,7 @@ class PostController extends AbstractController
         $post = new Post();
         $post->setPublishedAt(new \DateTimeImmutable('now'));
 
-        $form = $this->createFormBuilder($post)
-            ->add('title')
-            ->add('author')
-            ->add('publishedAt', DateTimeType::class, [
-                'widget' => 'single_text',
-            ])
-            ->add('content')
-            ->add('isPublished')
-            ->getForm();
+        $form = $this->createForm(PostType::class, $post);
 
         $form->handleRequest($request);
 
@@ -77,17 +69,9 @@ class PostController extends AbstractController
      */
     public function update(Post $post, Request $request, EntityManagerInterface $manager): Response
     {
-        $form = $this->createFormBuilder($post, [
+        $form = $this->createForm(PostType::class, $post, [
             'method' => 'PUT',
-        ])
-            ->add('title')
-            ->add('author')
-            ->add('publishedAt', DateTimeType::class, [
-                'widget' => 'single_text',
-            ])
-            ->add('content')
-            ->add('isPublished')
-            ->getForm();
+        ]);
 
         $form->handleRequest($request);
 
