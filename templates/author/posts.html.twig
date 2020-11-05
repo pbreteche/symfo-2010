@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Liste des articles de {{ author.nickname }}{% endblock %}
+
+{% block body %}
+    <h1>Liste des articles {{ author.nickname }}</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{{ path('app_post_detail', { id: post.id }) }}">{{ post.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
