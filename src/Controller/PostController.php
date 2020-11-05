@@ -75,6 +75,8 @@ class PostController extends AbstractController
 
         $form->handleRequest($request);
 
+        dump($post);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->flush();
 
