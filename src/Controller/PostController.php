@@ -46,7 +46,9 @@ class PostController extends AbstractController
         $post = new Post();
         $post->setPublishedAt(new \DateTimeImmutable('now'));
 
-        $form = $this->createForm(PostType::class, $post);
+        $form = $this->createForm(PostType::class, $post, [
+            'validation_groups' => ['Default', 'Creation'],
+        ]);
 
         $form->handleRequest($request);
 
