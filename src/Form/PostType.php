@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Author;
 use App\Entity\Post;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,8 +19,9 @@ class PostType extends AbstractType
             ->add('title', TextType::class, [
                 'empty_data' => '',
             ])
-            ->add('author', TextType::class, [
-                'empty_data' => '',
+            ->add('writtenBy', EntityType::class, [
+                'class' => Author::class,
+                'choice_label' => 'nickname',
             ])
             ->add('publishedAt', DateTimeType::class, [
                 'widget' => 'single_text',
