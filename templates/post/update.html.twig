@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(create_form) }}
-    {{ form_widget(create_form) }}
-    <button>Mettre à jour</button>
-    {{ form_end(create_form) }}
+    {{ include('post/_form.html.twig', { action: 'Mettre à jour'}) }}
 {% endblock %}
