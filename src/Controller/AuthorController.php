@@ -38,4 +38,14 @@ class AuthorController extends AbstractController
             'posts' => $posts,
         ]);
     }
+
+    public function resume(Author $author, PostRepository $postRepository)
+    {
+        $contributionCount = $postRepository->count(['writtenBy' => $author]);
+
+        return $this->render('author/resume.html.twig', [
+            'author' => $author,
+            'count' => $contributionCount,
+        ]);
+    }
 }

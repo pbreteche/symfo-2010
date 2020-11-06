@@ -13,4 +13,5 @@
 <div>
     {{ post.content | nl2br }}
 </div>
+    {{ render(controller('App\\Controller\\AuthorController::resume', {author: post.writtenBy})) }}
 {% endblock %}
