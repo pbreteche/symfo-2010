@@ -95,8 +95,21 @@ class PostController extends AbstractController
     /**
      * @Route("/search")
      */
-    public function search(Request $request)
+    public function search(Request $request, PostRepository $repository): Response
     {
-        return $this->render('post/search.html.twig');
+        $searchQuery = $request->query->get('q', '');
+
+        $cleanSearchQuery = trim($searchQuery);
+
+        $posts = [];
+
+        if ($cleanSearchQuery) {
+            $posts = $repository->findByTitleLike($cleanSearchQuery);
+
+        }
+
+        return $this->render('post/search.html.twig', [
+            'posts' => $posts,
+        ]);
     }
 }

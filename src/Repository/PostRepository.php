@@ -35,32 +35,12 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // /**
-    //  * @return Post[] Returns an array of Post objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByTitleLike(string $cleanSearchQuery)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('p.title LIKE :term')
             ->getQuery()
-            ->getResult()
-        ;
+            ->setParameter('term', '%'.$cleanSearchQuery.'%')
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Post
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
