@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
+use App\Util\StringManipulator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,17 +96,19 @@ class PostController extends AbstractController
     /**
      * @Route("/search")
      */
-    public function search(Request $request, PostRepository $repository): Response
-    {
+    public function search(
+        Request $request,
+        PostRepository $repository,
+        StringManipulator $stringManipulator
+    ): Response {
         $searchQuery = $request->query->get('q', '');
 
-        $cleanSearchQuery = trim($searchQuery);
+        $cleanSearchQuery = $stringManipulator->cleanUserInput($searchQuery);
 
         $posts = [];
 
         if ($cleanSearchQuery) {
             $posts = $repository->findByTitleLike($cleanSearchQuery);
-
         }
 
         return $this->render('post/search.html.twig', [
