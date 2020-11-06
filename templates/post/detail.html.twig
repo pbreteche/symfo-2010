@@ -13,5 +13,5 @@
 <div>
     {{ post.content | nl2br }}
 </div>
-    {{ render(controller('App\\Controller\\AuthorController::resume', {author: post.writtenBy})) }}
+    {{ render_esi(controller('App\\Controller\\AuthorController::resume', {author: post.writtenBy.id})) }}
 {% endblock %}

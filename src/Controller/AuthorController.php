@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Author;
 use App\Repository\AuthorRepository;
 use App\Repository\PostRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,6 +40,9 @@ class AuthorController extends AbstractController
         ]);
     }
 
+    /**
+     * @Cache(expires="+1 day")
+     */
     public function resume(Author $author, PostRepository $postRepository)
     {
         $contributionCount = $postRepository->count(['writtenBy' => $author]);
