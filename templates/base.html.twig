@@ -17,6 +17,9 @@
             </div>
         {% endfor %}
     {% endfor %}
+    <div>
+        {{ include('_common/_search_form.html.twig') }}
+    </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

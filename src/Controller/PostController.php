@@ -91,4 +91,12 @@ class PostController extends AbstractController
             'create_form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/search")
+     */
+    public function search(Request $request)
+    {
+        return $this->render('post/search.html.twig');
+    }
 }
