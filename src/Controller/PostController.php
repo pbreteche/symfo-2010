@@ -21,7 +21,7 @@ class PostController extends AbstractController
      */
     public function index(PostRepository $repository): Response
     {
-        $posts = $repository->findAll();
+        $posts = $repository->findLatestPublished();
 
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
