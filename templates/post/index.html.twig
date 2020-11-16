@@ -8,7 +8,7 @@
     {% for post in posts %}
     <li>
         <a href="{{ path('app_post_detail', { id: post.id }) }}">{{ post.title }}</a>
-        <a href="{{ path('app_post_update', { id: post.id }) }}">éditer</a>
+        <a href="{{ path('app_admin_post_update', { id: post.id }) }}">éditer</a>
     </li>
     {% endfor %}
 </ul>
