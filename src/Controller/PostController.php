@@ -3,10 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Post;
-use App\Form\PostType;
 use App\Repository\PostRepository;
 use App\Util\StringManipulator;
-use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,9 +30,16 @@ class PostController extends AbstractController
 
     /**
      * @Route("/{id}", requirements={"id": "\d+"})
+     * @IsGranted("ROLE_USER")
      */
     public function detail(Post $post): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        if (!$this->isGranted('ROLE_USER')) {
+            throw $this->createAccessDeniedException('Message personnalisé');
+        }
+
         return $this->render('post/detail.html.twig', [
             'post' => $post,
         ]);
