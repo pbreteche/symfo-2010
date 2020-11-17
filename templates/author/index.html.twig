@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Liste des auteurs {% endblock %}
+{% block title %} {{ 'author.index_page.title' | trans }} {% endblock %}
 
 {% block body %}
-    <h1>Liste des auteurs</h1>
+    <h1>{{ 'author.index_page.title' | trans }}</h1>
     <ul>
         {% for author in authors %}
             <li>

@@ -2,9 +2,9 @@
     {% if label is not same as false %}
         {% set label = name | humanize %}
     {% endif %}
-<label for="{{ id }}">{{ label }} MY FORM THEME</label>
+<label for="{{ id }}">{{ label }}</label>
 {% endblock form_label %}
 
 {% block textarea_label %}
-<label for="{{ id }}">{{ label }} MY FORM THEME TEXTAREA</label>
+<label for="{{ id }}">{{ label }}</label>
 {% endblock textarea_label %}

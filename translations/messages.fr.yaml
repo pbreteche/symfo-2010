@@ -1,0 +1,23 @@
+site:
+    title:
+        default: Bienvenue!
+    action:
+        create: Créer
+        edit: Éditer
+        update: Mettre à jour
+        back_to_index: Retour à la liste
+    search:
+        label: Recherche
+    login:
+        title: Connexion
+        help: Merci de vous authentifier
+        email: email
+        password: Mot de passe
+        action: Se connecter
+
+post:
+    index_page:
+        title: Liste des articles
+author:
+    index_page:
+        title: Liste des auteurs
