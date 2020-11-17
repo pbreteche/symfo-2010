@@ -26,6 +26,8 @@ class PostController extends AbstractController
         $post = new Post();
         $post->setPublishedAt(new \DateTimeImmutable('now'));
 
+        $this->denyAccessUnlessGranted('POST_CREATE', $post);
+
         $form = $this->createForm(PostType::class, $post, [
             'validation_groups' => ['Default', 'Creation'],
         ]);
@@ -52,12 +54,6 @@ class PostController extends AbstractController
      */
     public function update(Post $post, Request $request, EntityManagerInterface $manager): Response
     {
-        $currentUserAsAuthor = $this->getUser()->getAuthor();
-
-        if ($post->getWrittenBy() !== $currentUserAsAuthor) {
-            throw $this->createAccessDeniedException();
-        }
-
         $form = $this->createForm(PostType::class, $post, [
             'method' => 'PUT',
         ]);

@@ -11,7 +11,7 @@ class PostOwnerVoter extends Voter
 {
     protected function supports($attribute, $subject)
     {
-        return 'POST_EDIT' === $attribute && $subject instanceof Post;
+        return in_array($attribute, ['POST_CREATE', 'POST_EDIT']) && $subject instanceof Post;
     }
 
     protected function voteOnAttribute($attribute, $post, TokenInterface $token)
@@ -23,8 +23,16 @@ class PostOwnerVoter extends Voter
             return false;
         }
 
-        if ($user->getAuthor() === $post->getWrittenBy()) {
+        if (in_array('ROLE_ADMIN', $user->getRoles())) {
             return true;
+        }
+
+        switch ($attribute) {
+            case 'POST_EDIT':
+                if ($user->getAuthor() === $post->getWrittenBy()) {
+                    return true;
+                }
+                break;
         }
 
         return false;
