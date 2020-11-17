@@ -15,7 +15,7 @@ class AntiSpamValidator extends ConstraintValidator
             return;
         }
 
-        // TODO: implement the validation here
+        return;
         $this->context->buildViolation($constraint->message)
             ->setParameter('{{ value }}', $value->getTitle())
             ->addViolation();

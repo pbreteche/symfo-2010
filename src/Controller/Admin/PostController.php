@@ -25,6 +25,7 @@ class PostController extends AbstractController
     {
         $post = new Post();
         $post->setPublishedAt(new \DateTimeImmutable('now'));
+        $post->setWrittenBy($this->getUser()->getAuthor());
 
         $this->denyAccessUnlessGranted('POST_CREATE', $post);
 

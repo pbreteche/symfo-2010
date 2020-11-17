@@ -33,6 +33,8 @@ class PostOwnerVoter extends Voter
                     return true;
                 }
                 break;
+            case 'IS_AUTHENTICATED_REMEMBERED':
+                return true;
         }
 
         return false;
