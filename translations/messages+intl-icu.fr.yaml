@@ -25,3 +25,6 @@ post:
 author:
     index_page:
         title: Liste des auteurs
+    resume:
+        stat: Il a écrit au total {count} publications
+        title: Profil de {nickname}
