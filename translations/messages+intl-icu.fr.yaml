@@ -26,5 +26,10 @@ author:
     index_page:
         title: Liste des auteurs
     resume:
-        stat: Il a écrit au total {count} publications
+        stat: >-
+          {count, plural,
+              =0    { Il n'a pas encore écrit de publications }
+              une    { Il a écrit une publication }
+              other { Il a écrit au total # publications }
+          }
         title: Profil de {nickname}
