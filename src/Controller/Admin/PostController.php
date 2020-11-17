@@ -50,6 +50,12 @@ class PostController extends AbstractController
      */
     public function update(Post $post, Request $request, EntityManagerInterface $manager): Response
     {
+        $currentUserAsAuthor = $this->getUser()->getAuthor();
+
+        if ($post->getWrittenBy() !== $currentUserAsAuthor) {
+            throw $this->createAccessDeniedException();
+        }
+
         $form = $this->createForm(PostType::class, $post, [
             'method' => 'PUT',
         ]);
