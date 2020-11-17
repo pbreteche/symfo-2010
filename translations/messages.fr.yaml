@@ -18,6 +18,10 @@ site:
 post:
     index_page:
         title: Liste des articles
+    create:
+        success: Bravo, vous avez réussi l'exploit de créer un article
+    update:
+        success: Bravo, vous avez transformé un article naze en article formidable
 author:
     index_page:
         title: Liste des auteurs

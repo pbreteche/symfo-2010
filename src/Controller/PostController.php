@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/post", methods="GET")
@@ -34,11 +35,6 @@ class PostController extends AbstractController
      */
     public function detail(Post $post): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
-        if (!$this->isGranted('ROLE_USER')) {
-            throw $this->createAccessDeniedException('Message personnalisé');
-        }
 
         return $this->render('post/detail.html.twig', [
             'post' => $post,

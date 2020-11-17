@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/post")
@@ -21,8 +22,11 @@ class PostController extends AbstractController
     /**
      * @Route("/new", methods={"GET", "POST"})
      */
-    public function create(Request $request, EntityManagerInterface $manager): Response
-    {
+    public function create(
+        Request $request,
+        EntityManagerInterface $manager,
+        TranslatorInterface $translator
+    ): Response {
         $post = new Post();
         $post->setPublishedAt(new \DateTimeImmutable('now'));
         $post->setWrittenBy($this->getUser()->getAuthor());
@@ -39,7 +43,7 @@ class PostController extends AbstractController
             $manager->persist($post);
             $manager->flush();
 
-            $this->addFlash('success', 'Bravo, vous avez réussi l\'exploit de créer un article');
+            $this->addFlash('success', $translator->trans('post.create.success'));
 
             return $this->redirectToRoute('app_post_detail', ['id' => $post->getId()]);
         }
@@ -53,8 +57,12 @@ class PostController extends AbstractController
      * @Route("/{id}/edit", methods={"GET", "PUT"})
      * @IsGranted("POST_EDIT", subject="post")
      */
-    public function update(Post $post, Request $request, EntityManagerInterface $manager): Response
-    {
+    public function update(
+        Post $post,
+        Request $request,
+        EntityManagerInterface $manager,
+        TranslatorInterface $translator
+    ): Response {
         $form = $this->createForm(PostType::class, $post, [
             'method' => 'PUT',
         ]);
@@ -64,7 +72,7 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->flush();
 
-            $this->addFlash('success', 'Bravo, vous avez transformé un article naze en article formidable');
+            $this->addFlash('success', $translator->trans('post.update.success'));
 
             return $this->redirectToRoute('app_post_detail', ['id' => $post->getId()]);
         }
