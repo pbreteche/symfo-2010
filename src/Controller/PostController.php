@@ -33,14 +33,21 @@ class PostController extends AbstractController
 
     /**
      * @Route("/{id}", requirements={"id": "\d+"})
-     * @IsGranted("ROLE_USER")
      */
-    public function detail(Post $post): Response
+    public function detail(Request $request, Post $post): Response
     {
+        $etag = md5($post->getTitle().$post->getContent());
 
-        return $this->render('post/detail.html.twig', [
+        $response = new Response();
+        $response->setEtag($etag);
+
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
+        return $response->setContent($this->renderView('post/detail.html.twig', [
             'post' => $post,
-        ]);
+        ]));
     }
 
     /**
