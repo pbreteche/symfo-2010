@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    trimer_charlist: "\t\n\r\0\x0B"
 
 services:
     # default configuration for services in *this* file
@@ -31,4 +32,4 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\Util\Trimer:
-        arguments: { $charList: "\t\n\r\0\x0B"}
+        arguments: { $charList: "%trimer_charList%"}
