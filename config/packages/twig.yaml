@@ -3,4 +3,3 @@ twig:
 
     form_themes:
         - 'bootstrap_4_horizontal_layout.html.twig'
-        - '_common/form_layout.html.twig'
