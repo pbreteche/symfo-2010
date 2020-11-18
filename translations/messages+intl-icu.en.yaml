@@ -39,4 +39,4 @@ author:
               une    { Only one post for now }
               other { Already # posts }
           }
-        title: {nickname} profile
+        title: "{nickname} profile"
