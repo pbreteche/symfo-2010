@@ -29,6 +29,14 @@ post:
         success: Congratulation, you achieve to publish a post
     update:
         success: Congratulation, you make a beautiful post from a shitty one
+    title:
+        label: Title
+    publishedAt:
+        label: Published at
+    content:
+        label: Content
+    isPublished:
+        label: Is published
 author:
     index_page:
         title: Author list

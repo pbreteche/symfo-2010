@@ -16,12 +16,20 @@ class PostType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'empty_data' => '',
+                'label' => 'post.title.label'
             ])
             ->add('publishedAt', DateTimeType::class, [
                 'widget' => 'single_text',
+                'label' => 'post.publishedAt.label'
             ])
-            ->add('content')
-            ->add('isPublished')
+            ->add('content', null, [
+                'label' => 'post.content.label'
+
+            ])
+            ->add('isPublished', null, [
+                'label' => 'post.isPublished.label'
+
+            ])
         ;
     }
 

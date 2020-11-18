@@ -29,6 +29,14 @@ post:
         success: Bravo, vous avez réussi l'exploit de créer un article
     update:
         success: Bravo, vous avez transformé un article naze en article formidable
+    title:
+        label: Titre
+    publishedAt:
+        label: Publié le
+    content:
+        label: Contenu
+    isPublished:
+        label: publié
 author:
     index_page:
         title: Liste des auteurs
