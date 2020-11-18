@@ -14,6 +14,13 @@ site:
         email: email
         password: Mot de passe
         action: Se connecter
+admin:
+    locale:
+        select_success: >-
+            {locale, select,
+                fr {Vous êtes passé en français}
+                other {C'est pas possible}
+            }
 
 post:
     index_page:

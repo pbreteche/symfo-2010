@@ -18,7 +18,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class PostController extends AbstractController
 {
 
-
     /**
      * @Route("/new", methods={"GET", "POST"})
      */

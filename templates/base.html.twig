@@ -21,9 +21,11 @@
             </div>
         {% endfor %}
     {% endfor %}
+    {% block header %}
     <div>
         {{ include('_common/_search_form.html.twig') }}
     </div>
+    {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
