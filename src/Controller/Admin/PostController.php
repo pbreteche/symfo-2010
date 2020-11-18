@@ -48,7 +48,7 @@ class PostController extends AbstractController
             return $this->redirectToRoute('app_post_detail', ['id' => $post->getId()]);
         }
 
-        return $this->render('post/create.html.twig', [
+        return $this->render('admin/post/create.html.twig', [
             'create_form' => $form->createView(),
         ]);
     }
@@ -77,7 +77,7 @@ class PostController extends AbstractController
             return $this->redirectToRoute('app_post_detail', ['id' => $post->getId()]);
         }
 
-        return $this->render('post/update.html.twig', [
+        return $this->render('admin/post/update.html.twig', [
             'create_form' => $form->createView(),
         ]);
     }
