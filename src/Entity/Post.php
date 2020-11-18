@@ -132,7 +132,7 @@ class Post
     }
 
     /**
-     * @Assert\IsTrue(message="Content length should be greater than title")
+     * @Assert\IsTrue(message="post.content_greater_than_title")
      */
     public function isContentGreaterThanTitle()
     {

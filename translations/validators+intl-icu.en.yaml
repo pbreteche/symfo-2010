@@ -1,0 +1,2 @@
+post:
+    content_greater_than_title: Content length should be greater than title
