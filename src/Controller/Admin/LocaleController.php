@@ -12,14 +12,14 @@ class LocaleController extends AbstractController
 {
 
     /**
-     * @Route("/locale/{locale}", requirements={"locale": "en|fr"})
+     * @Route("/locale/{_locale}", requirements={"_locale": "en|fr"})
      */
-    public function select(string $locale, Request $request, TranslatorInterface $translator): Response
+    public function select(string $_locale, Request $request, TranslatorInterface $translator): Response
     {
-        $request->getSession()->set('locale', $locale);
+        $request->getSession()->set('locale', $_locale);
 
         $this->addFlash('success', $translator->trans('admin.locale.select_success', [
-            'locale' => $locale
+            'locale' => $_locale
         ]));
 
         return $this->redirectToRoute('app_admin_post_create');
