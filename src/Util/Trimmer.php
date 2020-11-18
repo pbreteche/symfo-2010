@@ -2,7 +2,7 @@
 
 namespace App\Util;
 
-class Trimer
+class Trimmer implements TrimmerInterface
 {
 
     private $charList;
@@ -12,7 +12,7 @@ class Trimer
         $this->charList = $charList;
     }
 
-    public function trim(string $string)
+    public function trim(string $string): string
     {
         return trim($string, $this->charList);
     }
