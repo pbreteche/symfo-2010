@@ -13,7 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/post", methods="GET")
+ * @Route({
+ *     "en": "/post",
+ *     "fr": "/publication",
+ * }, methods="GET")
  */
 class PostController extends AbstractController
 {
@@ -42,7 +45,10 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/search")
+     * @Route({
+     *     "en": "/search",
+     *     "fr": "/chercher"
+     * })
      */
     public function search(
         Request $request,
