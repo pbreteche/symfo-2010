@@ -1,0 +1,42 @@
+site:
+    title:
+        default: Welcome!
+    action:
+        create: Create
+        edit: Edit
+        update: Update
+        back_to_index: Back to list
+    search:
+        label: Search
+    login:
+        title: Connection
+        help: Please log in
+        email: email
+        password: Password
+        action: Log in
+admin:
+    locale:
+        select_success: >-
+            {locale, select,
+                en {It's English now}
+                other {Not possible}
+            }
+
+post:
+    index_page:
+        title: Post list
+    create:
+        success: Congratulation, you achieve to publish a post
+    update:
+        success: Congratulation, you make a beautiful post from a shitty one
+author:
+    index_page:
+        title: Author list
+    resume:
+        stat: >-
+          {count, plural,
+              =0    { No post yet }
+              une    { Only one post for now }
+              other { Already # posts }
+          }
+        title: {nickname} profile
